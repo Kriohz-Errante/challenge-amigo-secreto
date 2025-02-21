@@ -23,12 +23,27 @@ function agregarAmigo() {
         alert('⚠️ Debes ingresar un nombre válido');
         return;
     }
+// Verificar si el nombre ya existe en la lista
+if (listaAmigos.includes(inputAmigo.value)) {
+    alert('⚠️ El nombre ya está en la lista.');
+    return;
+}
+// Agregar el nombre si no existe
     listaAmigos.push(inputAmigo.value);
-    ulListaAmigos.innerHTML += `<li>${inputAmigo.value}</li>`;
+    mostrarListaAmigos(); // Mostrar la lista actualizada
     limpiarCaja();
-
     actualizarEstadoBotones(); // Verificar si se habilita el botón de sorteo
 
+};
+
+// Función para mostrar la lista de amigos en el HTML
+function mostrarListaAmigos() {
+    // Limpiar la lista existente antes de agregar los nuevos elementos
+    ulListaAmigos.innerHTML = "";
+// Iterar sobre el arreglo listaAmigos y agregar cada nombre como un <li>
+for (let i = 0; i < listaAmigos.length; i++) {
+    ulListaAmigos.innerHTML += `<li>${listaAmigos[i]}</li>`;
+}
 };
 
 //Función para limpiar el Input
